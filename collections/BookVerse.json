@@ -1,0 +1,111 @@
+{
+	"info": {
+		"_postman_id": "b2bcc3a4-60d9-4fd8-bb97-7e97b4b13a46",
+		"name": "BookVerse",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30844253"
+	},
+	"item": [
+		{
+			"name": "crear libro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulo\": \"melissa\",\r\n    \"fechaPublicacion\": \"2020-07-10 15:00:00.000\",\r\n    \"paginas\": 250,\r\n    \"editorial\": \"test\",\r\n    \"portada\": \"https://media.es.wired.com/photos/64aed23f721d1170b8ceb337/master/w_640,c_limit/IA%201467639088.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3001/libros/commands",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3001",
+					"path": [
+						"libros",
+						"commands"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "obtener libros",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulo\": \"melissa\",\r\n    \"fechaPublicacion\": \"2020-07-10 15:00:00.000\",\r\n    \"paginas\": 250,\r\n    \"editorial\": \"test\",\r\n    \"portada\": \"https://media.es.wired.com/photos/64aed23f721d1170b8ceb337/master/w_640,c_limit/IA%201467639088.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3001/libros/queries",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3001",
+					"path": [
+						"libros",
+						"queries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "health",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulo\": \"melissa\",\r\n    \"fechaPublicacion\": \"2020-07-10 15:00:00.000\",\r\n    \"paginas\": 250,\r\n    \"editorial\": \"test\",\r\n    \"portada\": \"https://media.es.wired.com/photos/64aed23f721d1170b8ceb337/master/w_640,c_limit/IA%201467639088.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3001/health",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3001",
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

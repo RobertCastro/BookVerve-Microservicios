@@ -1,0 +1,38 @@
+version: '3.2'
+
+networks:
+  libro_net:
+
+services:
+  libros-db:
+    container_name: 'libros-db'
+    image: postgres
+    env_file:
+      - ./libros/.env
+    environment:
+      PGDATA: /data/postgres
+    volumes:
+       - postgres_data:/var/lib/postgresql/data/
+    networks:
+      - libro_net
+    ports:
+      - 5432:5432
+    restart: always
+
+
+  libros-api:
+    container_name: 'libros-api'
+    build:
+      context: ./libros
+      dockerfile: Dockerfile
+    working_dir: /app/
+    env_file:
+      - ./libros/.env
+    networks:
+      - libro_net
+    ports:
+      - 3001:3001
+    restart: always
+
+volumes:
+  postgres_data:
