@@ -1,10 +1,14 @@
+import os
+from flask import Flask, jsonify
 from .presentacion import operations_command_bp, operations_command_prefix, operations_query_prefix, operations_query_bp
 from .modelos import db, ma
-from .logica import BaseAPIError,handle_validation_error,handle_api_custom_exception
+from .logica import BaseAPIError, handle_validation_error, handle_api_custom_exception
 from .utils import DatabaseUtil
-from flask import Flask, jsonify
+import awsgi
 from flask_cors import CORS
+from dotenv import load_dotenv
 
+load_dotenv()
 
 def create_app():
     """
@@ -33,3 +37,20 @@ def create_app():
 
     return app
 
+app = create_app()
+
+@app.route('/')
+def index():
+    return jsonify(status=200, message='OK')
+
+@app.route('/initialize')
+def initialize_db():
+    with app.app_context():
+        db.create_all()
+        return jsonify(status=200, message="Tablas creadas exitosamente.")
+
+if __name__ == "__main__":
+    app.run()
+
+def lambda_handler(event, context):
+    return awsgi.response(app, event, context)
