@@ -1,7 +1,6 @@
 from .deserializers import CreateLibroSchema
 from ..modelos import Libro, db, libro_schema
 from .errors import DuplicatedBookData
-from psycopg2.errors import UniqueViolation
 from sqlalchemy.exc import IntegrityError
 
 
@@ -13,14 +12,10 @@ class LibroService():
             db.session.add(nuevo_libro)
             db.session.commit()
 
-        except (IntegrityError, UniqueViolation):
+        except IntegrityError:
             db.session.rollback()
             raise DuplicatedBookData()
         
     def obtener_libros(self):
        libros = Libro.query.all()
-
        return [libro_schema.dump(libro) for libro in libros]
-    
-
-
